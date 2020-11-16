@@ -20,7 +20,7 @@ function Stack () {
 
   // 判断栈是否为空
   this.isEmpty = function () {
-    return item.length == 0
+    return items.length == 0
   }
 
   // 返回栈的大小
@@ -33,3 +33,28 @@ function Stack () {
     items = []
   }
 }
+
+// 判断字符串里的括号是否合法
+function is_leagl_brackets (string) {
+  let stack = new Stack()
+  for (let i = 0; i < string.length; i++) {
+    let item = string[i]
+    // 遇到左括号入栈
+    if (item == '(') {
+      stack.push(item)
+    } else if (item == ')') {
+      // 遇到右括号，判断栈是否为空
+      if (stack.isEmpty()) {
+        return false
+      } else {
+        stack.pop() // 弹出左括号
+      }
+    }
+  }
+  // 如果栈为空，说明字符串括号合法
+  return stack.isEmpty()
+}
+
+console.log(is_leagl_brackets('sdf(ds(ew(we)rw)rwqq)qwewe'))
+console.log(is_leagl_brackets('(sd(qwqw)sd(sd))'))
+console.log(is_leagl_brackets('()()sd()(sd()fw))('))
