@@ -58,3 +58,29 @@ function is_leagl_brackets (string) {
 console.log(is_leagl_brackets('sdf(ds(ew(we)rw)rwqq)qwewe'))
 console.log(is_leagl_brackets('(sd(qwqw)sd(sd))'))
 console.log(is_leagl_brackets('()()sd()(sd()fw))('))
+
+// 计算逆波兰表达式：后缀表达式
+function calc_exp (exp) {
+  var stack = new Stack()
+  for (var i = 0; i < exp.length; i++) {
+    var item = exp[i]
+    if (['+', '-', '*', '/'].includes(item)) {
+      // 第一次弹出的数放在运算符的右边，第二个弹出的数放在运算符的左边
+      var value1 = stack.pop()
+      var value2 = stack.pop()
+      var exp_str = value2 + item + value1
+      // 计算并取整  eval： 计算表达式的结果
+      var res = parseInt(eval(exp_str))
+      stack.push(res.toString())
+    } else {
+      stack.push(item)
+    }
+  }
+  return stack.pop()
+}
+
+var exp_1 = ["4", "13", "5", "/", "+"]; // 对应的后缀表达式是  4 + 13/5
+var exp_2 = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"];
+console.log(calc_exp(exp_1));
+console.log(calc_exp(exp_2));
+console.log(eval("3 + 5"))
