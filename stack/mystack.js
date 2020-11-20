@@ -84,3 +84,5 @@ var exp_2 = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"
 console.log(calc_exp(exp_1));
 console.log(calc_exp(exp_2));
 console.log(eval("3 + 5"))
+
+module.exports = Stack
